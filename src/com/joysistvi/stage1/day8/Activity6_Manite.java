@@ -24,31 +24,34 @@ public class Activity6_Manite {
 
         // Logging in
 
-        for (int i = 3; i >= 0; i--) {
-            System.out.println("=== Sign In to Chichi Cafe ===");
+        int maxAttempts = 3;
+
+        for (int i = 1; i <= maxAttempts; i++) {
+            System.out.println("\n=== Sign In to Chichi Cafe ===");
             System.out.print("Enter your email: ");
             String email = input.nextLine();
             System.out.print("Enter your password: ");
             String password = input.nextLine();
 
-            if (i > 0) {
-                if (email.equals(emailCreated) && password.equals(passCreated)) {
-                    System.out.println("Login Successful!");
-                    i = 0;
+            if (email.equalsIgnoreCase(emailCreated) && password.equalsIgnoreCase(passCreated)) {
+                System.out.println("Login Successful!");
+                break;
+            }
+
+            int remainingAttempts = maxAttempts - i;
+
+            if (remainingAttempts > 0) {
+                if (!email.equalsIgnoreCase(emailCreated) && !password.equalsIgnoreCase(passCreated)) {
+                    System.out.println("Wrong email and password!");
+                } else if (!email.equalsIgnoreCase(emailCreated)) {
+                    System.out.println("Wrong email!");
                 } else {
-                    if (!email.equals(emailCreated) && !password.equals(passCreated)) {
-                        System.out.println("Wrong email and password!");
-                        System.out.printf("Attempts remaining: %d%n",i);
-                    } else if (!email.equals(emailCreated)) {
-                        System.out.println("Wrong email!");
-                        System.out.printf("Attempts remaining: %d%n",i);
-                    } else {
-                        System.out.println("Wrong password");
-                        System.out.printf("Attempts remaining: %d%n",i);
-                    }
+                    System.out.println("Wrong password!");
                 }
+                System.out.printf("Attempts remaining: %d%n",remainingAttempts);
             } else {
                 System.out.println("Maximum attempts reached! Please try again after an hour!");
+                return;
             }
 
 
