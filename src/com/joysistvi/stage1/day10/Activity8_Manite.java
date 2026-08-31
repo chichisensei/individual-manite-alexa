@@ -75,6 +75,7 @@ public class Activity8_Manite {
 
             }
         }
+        input.close();
 
     }
     public static void guessingGame() {
@@ -139,6 +140,8 @@ public class Activity8_Manite {
             return;
         }
         guessingGame();
+
+        input.close();
 
     }
 }
