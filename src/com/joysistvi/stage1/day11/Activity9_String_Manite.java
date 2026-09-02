@@ -64,7 +64,7 @@ public class Activity9_String_Manite {
                     System.out.printf("Last character: %s",last);
                 }
 
-                System.out.println("Again? [1] - Oui | [2] - Non");
+                System.out.println("\nAgain? [1] - Oui | [2] - Non");
                 while (!input.hasNextInt()) {
                     System.out.println("Invalid input! Choose an integer!");
                     input.next();
@@ -90,7 +90,7 @@ public class Activity9_String_Manite {
                 }
                 System.out.println("The letter appeared " + countLetter + " times");
 
-                System.out.println("Again? [1] - Oui | [2] - Non");
+                System.out.println("\nAgain? [1] - Oui | [2] - Non");
                 while (!input.hasNextInt()) {
                     System.out.println("Invalid input! Choose an integer!");
                     input.next();
@@ -113,7 +113,7 @@ public class Activity9_String_Manite {
                 }
                 System.out.println("Total vowels: " + vowelCount);
 
-                System.out.println("Again? [1] - Oui | [2] - Non");
+                System.out.println("\nAgain? [1] - Oui | [2] - Non");
                 while (!input.hasNextInt()) {
                     System.out.println("Invalid input! Choose an integer!");
                     input.next();
