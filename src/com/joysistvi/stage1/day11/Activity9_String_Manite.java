@@ -35,15 +35,103 @@ public class Activity9_String_Manite {
 
         System.out.println("Proceed to Stretch Goal?");
         System.out.print("[1] - Oui? | [2] - Non?");
-        int choice = input.nextInt();
+        int menuChoice = input.nextInt();
+        input.nextLine();
 
-        while (choice == 1) {
+
+        while (menuChoice == 1) {
             System.out.println("Enter any integers or words: ");
-            while (input.hasNextLine()) {
-                System.out.println("[1] - Display the first and last character of the string?\n[2] - Count and display how many times the character appear in the string?\n[3] - Count and display the total number of vowels in the string?");
+            String user = input.nextLine();
+
+            System.out.println("[1] - Find the first and last character?\n[2] - Count some letters?\n[3] - Count vowels?");
+            int choice = input.nextInt();
+            input.nextLine();
+
+            while (choice == 1) {
+                System.out.print("[1] - First? | [2] - Last?");
+                while (!input.hasNextInt()) {
+                    System.out.println("Invalid input! Choose an integer!");
+                    input.next();
+                }
+                int choice_two = input.nextInt();
+                input.nextLine();
+
+                if (choice_two == 1) {
+                    char first = user.charAt(0);
+                    System.out.printf("First character: %s",first);
+                } else {
+                    char last = user.charAt(user.length() - 1);
+                    System.out.printf("Last character: %s",last);
+                }
+
+                System.out.println("Again? [1] - Oui | [2] - Non");
+                while (!input.hasNextInt()) {
+                    System.out.println("Invalid input! Choose an integer!");
+                    input.next();
+                }
+                int choice_three = input.nextInt();
+                input.nextLine();
+                if (choice_three != 1) {
+                    break;
+                }
 
             }
-            choice = input.nextInt();
+
+            while (choice == 2) {
+                char[] charArray = user.toCharArray();
+                int countLetter = 0;
+                System.out.print("What letters? ");
+                char characters = Character.toLowerCase(input.next().charAt(0));
+                input.nextLine();
+                for (int i = 0; i < charArray.length; i++) {
+                    if (Character.toLowerCase(charArray[i]) == characters) {
+                        countLetter++;
+                    }
+                }
+                System.out.println("The letter appeared " + countLetter + " times");
+
+                System.out.println("Again? [1] - Oui | [2] - Non");
+                while (!input.hasNextInt()) {
+                    System.out.println("Invalid input! Choose an integer!");
+                    input.next();
+                }
+                int choice_three = input.nextInt();
+                input.nextLine();
+                if (choice_three != 1) {
+                    break;
+                }
+            }
+
+            while (choice == 3) {
+                int vowelCount = 0;
+                String vowels = "aeiou";
+                for (int i = 0; i < user.length(); i++) {
+                    char cha = Character.toLowerCase(user.charAt(i));
+                    if (vowels.indexOf(cha) != -1) {
+                        vowelCount++;
+                    }
+                }
+                System.out.println("Total vowels: " + vowelCount);
+
+                System.out.println("Again? [1] - Oui | [2] - Non");
+                while (!input.hasNextInt()) {
+                    System.out.println("Invalid input! Choose an integer!");
+                    input.next();
+                }
+                int choice_three = input.nextInt();
+                input.nextLine();
+                if (choice_three != 1) {
+                    break;
+                }
+            }
+
+            System.out.println("\nStay in Stretch Goal menu? [1] - Oui | [2] - Non");
+            while (!input.hasNextInt()) {
+                System.out.println("Invalid input! Choose an integer!");
+                input.next();
+            }
+            menuChoice = input.nextInt();
+            input.nextLine();
 
 
         }
