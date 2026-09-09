@@ -13,8 +13,8 @@ public class Activity12_Manite {
     // method to print a certain word in reverse order OK
 
     // method to identify if a person is a voter or not OK
-    // method to identify if a number is odd or even
-    // method to get the square root of a certain variable
+    // method to identify if a number is odd or even OK! LOOP?
+    // method to get the square root of a certain variable OK
     //a method to get the power of a number using base and exponent
     // method to print a random number between 1 & 100
     // a method to get the area of a circle using the given radius
@@ -27,19 +27,24 @@ public class Activity12_Manite {
     // pick user character
     // display coins and health
 
+    static int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    static int randomIndex = (int) Math.floor(Math.random() * numbers.length);
+    static int randomNumbers = (int) Math.floor(Math.random() * 1000) + 1;
+
     public static void main(String[] args) throws InterruptedException {
 
-        System.out.print("Enter your name: ");
-        String name = input.nextLine();
-
-        System.out.print("Enter your age: ");
-        int age = input.nextInt();
-
-        printNameAge(name,age);
-        identifyVoter(age);
-        printName50(name);
+//        System.out.print("Enter your name: ");
+//        String name = input.nextLine();
+//
+//        System.out.print("Enter your age: ");
+//        int age = input.nextInt();
+//
+//        printNameAge(name,age);
+//        identifyVoter(age);
+//        printName50(name);
 
         // Start of Game
+        startGame();
 
 
 //        printNameReverse(name);
@@ -173,6 +178,60 @@ public class Activity12_Manite {
         } else if (age >= 0) {
             System.out.println("Who are you, youngster!? You are forbidden in the realm!");
         }
+    }
+
+    public static void startGame() {
+        String banner = "Welcome to your first quest!\n"
+                      + "Find out if the number "
+                      + numbers[randomIndex]
+                      + "\nis an [ 1 ] odd or [ 2 ] even number",
+               banner2 = "\nWelcome to your second quest!\n"
+                       + "Find out if the number "
+                       + randomNumbers
+                       + "\nis a [ 1 ] Perfect square or [ 2 ] Not a Perfect Square";
+
+
+
+        System.out.println(banner);
+
+        System.out.print("Enter choice: ");
+        int choice = input.nextInt();
+        oddOrEven(numbers[randomIndex], choice);
+
+        System.out.println(banner2);
+        System.out.print("Enter choice: ");
+        choice = input.nextInt();
+        findSqrt(randomNumbers, choice);
+
+
+
+    }
+
+    private static int oddOrEven(int number, int choice) {
+        while (choice < 0 || choice > 2) {
+            System.out.println("Invalid Input!");
+            System.out.print("Enter choice: ");
+            choice = input.nextInt();
+        }
+        System.out.print((number % 2 == 0 && choice == 2) ? "Yes, correct! It's an even number" : (number % 2 != 0 && choice == 1) ? "Yes, correct! It's an odd number!" : "Wrong! Try Again!");
+
+
+        return number;
+
+    }
+
+    private static void findSqrt(double number, int choice) {
+        while (choice < 0 || choice > 2) {
+            System.out.println("Invalid Input!");
+            System.out.print("Enter choice: ");
+            choice = input.nextInt();
+        }
+
+        int root = (int) Math.sqrt(number);
+        boolean isPerfectSquare = ((root * root) == number);
+
+        System.out.println(((isPerfectSquare && choice == 1) || !isPerfectSquare && choice == 2) ? "Yes, that's correct!" : "Wrong!" );
+
     }
 
     public static void testAnsi() throws InterruptedException {
