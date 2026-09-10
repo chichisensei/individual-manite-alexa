@@ -10,20 +10,25 @@ public class Activity13_Manite {
     private String password;
 
     public Activity13_Manite(String firstName, String middleName, String lastName, String address, String email, String password) {
+        String banner = "---------------------------\n" +
+                        "| All fields are required |\n" +
+                        "---------------------------";
 
-       while (true) {
-           if ((firstName != null || middleName != null || lastName != null || address != null || email != null || password != null)) {
-               this.firstName = firstName;
-               this.middleName = middleName;
-               this.lastName = lastName;
-               this.address = address;
-               this.email = email;
-               this.password = password;
-               break;
-           } else {
-               System.out.println("Invalid input");
-           }
+       if ((firstName == null || firstName.isBlank() ||
+           middleName == null || middleName.isBlank() ||
+           lastName == null || lastName.isBlank() ||
+           address == null || address.isBlank() ||
+           email == null || email.isBlank() ||
+           password == null || password.isBlank())) {
+
+           throw new IllegalArgumentException("\n" + banner);
        }
+       this.firstName = firstName;
+       this.middleName = middleName;
+       this.lastName = lastName;
+       this.address = address;
+       this.email = email;
+       this.password = password;
 
     }
 
