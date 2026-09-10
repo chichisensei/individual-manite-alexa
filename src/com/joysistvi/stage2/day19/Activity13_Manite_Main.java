@@ -17,17 +17,17 @@ public class Activity13_Manite_Main {
         while (!valid) {
             System.out.println();
             System.out.print("Enter your first name: ");
-            String firstName = input.nextLine();
+            String firstName = input.nextLine().trim();
             System.out.print("Enter your middle name: ");
-            String middleName = input.nextLine();
+            String middleName = input.nextLine().trim();
             System.out.print("Enter your last name: ");
-            String lastName = input.nextLine();
+            String lastName = input.nextLine().trim();
             System.out.print("Enter your address: ");
-            String address = input.nextLine();
+            String address = input.nextLine().trim();
             System.out.print("Enter your email: ");
-            String email = input.nextLine();
+            String email = input.nextLine().trim();
             System.out.print("Enter your password: ");
-            String password = input.nextLine();
+            String password = input.nextLine().trim();
 
             try {
                 Activity13_Manite userAccount = new Activity13_Manite(firstName, middleName, lastName, address, email, password);

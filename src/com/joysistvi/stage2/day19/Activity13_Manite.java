@@ -18,7 +18,7 @@ public class Activity13_Manite {
            middleName == null || middleName.isBlank() ||
            lastName == null || lastName.isBlank() ||
            address == null || address.isBlank() ||
-           email == null || email.isBlank() ||
+           email == null || email.isBlank() || !email.contains("@gmail.com") ||
            password == null || password.isBlank())) {
 
            throw new IllegalArgumentException("\n" + banner);
