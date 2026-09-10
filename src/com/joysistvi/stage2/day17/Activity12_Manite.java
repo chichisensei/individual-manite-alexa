@@ -1,8 +1,5 @@
 package com.joysistvi.stage2.day17;
 
-import org.w3c.dom.ls.LSOutput;
-
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Activity12_Manite {
@@ -54,13 +51,24 @@ public class Activity12_Manite {
         startGame();
 
 
+
+
+
+
     }
 
     public static void printNameAge(String name, int age) {
-        System.out.printf("%nName: %s%n" +
-                "Age: %d%n", name,age);
+        System.out.printf("^^^^^^^^^^^^^^^^^^");
+        System.out.printf("%nName: %s%n" + "Age: %d%n", name,age);
+        System.out.printf("^^^^^^^^^^^^^^^^^^");
 
         System.out.println();
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -172,6 +180,11 @@ public class Activity12_Manite {
         }
 
         System.out.print("! Welcome to the Adventure Game!\n\n");
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -185,100 +198,162 @@ public class Activity12_Manite {
 
     // Start Game - banner5 & banner6
     public static void startGame() {
-        String banner = "\nWelcome to your first quest! " + userCharacter
+        String banner = "\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+                      + "\nWelcome to your first quest! " + userCharacter
                       + "\nFind out if the number "
                       + numbers[randomIndex]
-                      + "\nis an [ 1 ] odd or [ 2 ] even number\n",
-               banner2 = "\nWelcome to your second quest!" + userCharacter
+                      + "\nis an [ 1 ] odd or [ 2 ] even number\n"
+                      + "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+               banner2 = "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+                       + "\nWelcome to your second quest!" + userCharacter
                        + "\nFind out if the number "
                        + randomNumbers
-                       + "\nis a [ 1 ] Perfect square or [ 2 ] Not a Perfect Square\n",
-               banner3 = "\nWelcome to your third quest!" + userCharacter
+                       + "\nis a [ 1 ] Perfect square or [ 2 ] Not a Perfect Square\n"
+                       + "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+               banner3 = "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+                       + "\nWelcome to your third quest!" + userCharacter
                        + "\nFind out the derivative of \\(f(x) = 3x^3 - 5x^2 + 39x + 2\\)"
-                       + "\nif x = 4\n",
-               banner4 = "\nWelcome to your fourth quest!" + userCharacter
+                       + "\nif x = 4\n"
+                       + "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+               banner4 = "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+                       + "\nWelcome to your fourth quest!" + userCharacter
                        + "\nGuess a random number ranging"
-                       + "\nfrom 1 - 100\n",
-               banner5 = "\nWelcome to your fifth quest!" + userCharacter
+                       + "\nfrom 1 - 100\n"
+                       + "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+               banner5 = "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+                        + "\nWelcome to your fifth quest!" + userCharacter
                         + "\nThe Ancient Gate blocks your path.\n"
                         + "\"Only those who know the area of \nthe sacred circle may pass.\""
-                        + "\nRadius: 4\n",
-               banner6 = "\nWelcome to your final quest!" + userCharacter
+                        + "\nRadius: 4\n"
+                        + "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+               banner6 = "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+                       + "\nWelcome to your final quest!" + userCharacter
                        + "\nA golden gate bars your path.\n"
                        + "An angel declares that you should\nspeak your savior's name\nand the gates will open for you.\n"
-                       + "Each correct letter will be revealed.\nGuess until the entire name is complete.\n";
+                       + "Each correct letter will be revealed.\nGuess until the entire name is complete.\n"
+                       + "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n";
 
 
 
-        System.out.println(banner);
-        System.out.print("Enter choice: ");
+        System.out.println(banner + displayHealth());
+        System.out.print("\nEnter choice: ");
         int choice = input.nextInt();
         oddOrEven(numbers[randomIndex], choice);
 
-        System.out.println(banner2);
-        System.out.print("Enter choice: ");
+        System.out.println(banner2 + displayHealth());
+        System.out.print("\nEnter choice: ");
         choice = input.nextInt();
         findSqrt(randomNumbers, choice);
 
-        System.out.println(banner3);
-        System.out.print("Enter your answer: ");
+        System.out.println(banner3 + displayHealth());
+        System.out.print("\nEnter your answer: ");
         int answer = input.nextInt();
         printDerivative(answer);
 
-        System.out.println(banner4);
+        System.out.println(banner4 + displayHealth());
         guessingQuest();
 
-        System.out.println(banner5);
-        findTheArea();
+        System.out.println(banner5 + displayHealth());
+        System.out.print("Enter the area: ");
+        double area = input.nextDouble();
+        findTheArea(area);
 
-        System.out.println(banner6);
+        System.out.println(banner6 + displayHealth());
         guessTheWord();
 
 
     }
 
-    // Quest 1
-    private static int oddOrEven(int number, int choice) {
-        while (choice < 0 || choice > 2) {
-            System.out.println("Invalid Input!");
-            System.out.print("Enter choice: ");
-            choice = input.nextInt();
-        }
-        if (number % 2 == 0 && choice == 2) {
-            System.out.println("Yes, correct! It's an even number");
-        } else if (number % 2 != 0 && choice == 1) {
-            System.out.println("Yes, correct! It's an odd number!");
-        } else {
-            System.out.println("Wrong! Try Again!");
-            takeDamage();
+    // Quest 1 complete
+    private static void oddOrEven(int number, int choice) {
+
+        boolean isWinning = false;
+
+        do {
+            if (choice < 1 || choice > 2) {
+                System.out.println("Invalid Input!");
+                continue;
+            }
+
+            if (number % 2 == 0 && choice == 2) {
+                System.out.print("Yes, correct! It's an even number\n");
+                System.out.println(displayHealth());
+                isWinning = true;
+            } else if (number % 2 != 0 && choice == 1) {
+                System.out.println("Yes, correct! It's an odd number!\n");
+                System.out.println(displayHealth());
+                isWinning = true;
+            } else {
+                System.out.println("Wrong! Try Again!");
+                takeDamage();
+                System.out.println(displayHealth());
+
+            }
+
+            if (!isWinning) {
+                System.out.println("\nFind out if the number " + numbers[randomIndex] + "\nis an [ 1 ] odd or [ 2 ] even number\n");
+                System.out.println(displayHealth());
+                System.out.print("Enter choice: ");
+                choice = input.nextInt();
+            }
+
+
+        } while (!isWinning);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
 
-        return number;
 
     }
-    // Quest 2
+    // Quest 2 - complete
     private static void findSqrt(double number, int choice) {
-        while (choice < 0 || choice > 2) {
-            System.out.println("Invalid Input!");
-            System.out.print("Enter choice: ");
-            choice = input.nextInt();
+
+        boolean isWinning = false;
+
+        do {
+            if (choice < 1 || choice > 2) {
+                System.out.println("Invalid Input!");
+                continue;
+            }
+
+            int root = (int) Math.sqrt(number);
+            boolean isPerfectSquare = ((Math.pow(root,2)) == number);
+
+            if ((isPerfectSquare && choice == 1) || !isPerfectSquare && choice == 2) {
+                System.out.println(displayHealth() + "\nYes, that's correct!");
+                isWinning = true;
+            } else {
+                System.out.println("Wrong!");
+                takeDamage();
+                System.out.println(displayHealth());
+            }
+
+            if (!isWinning) {
+                System.out.println("\nFind out if the number " + randomNumbers + "\nis a [ 1 ] Perfect square or [ 2 ] Not a Perfect Square\n");
+                System.out.println(displayHealth());
+                System.out.print("Enter choice: ");
+                choice = input.nextInt();
+            }
+
+
+        } while (!isWinning);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
-        int root = (int) Math.sqrt(number);
-        boolean isPerfectSquare = ((Math.pow(root,2)) == number);
 
-        if ((isPerfectSquare && choice == 1) || !isPerfectSquare && choice == 2) {
-            System.out.println("Yes, that's correct!");
-        } else {
-            System.out.println("Wrong!");
-            takeDamage();
-        }
 
     }
 
 
-    // Quest 3
+    // Quest 3 - complete
     private static double f(double x) {
         return 3 * Math.pow(x, 3) - 5 * Math.pow(x, 2) + 39 * Math.pow(x, 1) + 2;
 
@@ -293,13 +368,35 @@ public class Activity12_Manite {
     }
 
     public static void printDerivative(int answer) {
-        double pointX = 4.0;
-        int slope = getIntDerivative(pointX);
-        if (answer != getIntDerivative(pointX)) {
-            System.out.println("Wrong answer!");
-            takeDamage();
-        } else {
-            System.out.println("Correct! The integer derivative at x=4 is: " + slope);
+
+        boolean isWinning = false;
+
+        do {
+            double pointX = 4.0;
+            int slope = getIntDerivative(pointX);
+            if (answer != getIntDerivative(pointX)) {
+                System.out.println("Wrong answer!");
+                takeDamage();
+                System.out.println(displayHealth());
+            } else {
+                System.out.println("Correct! The integer derivative at x=4 is: " + slope);
+                isWinning = true;
+            }
+
+            if (!isWinning) {
+                System.out.println("\nFind out the derivative of \\(f(x) = 3x^3 - 5x^2 + 39x + 2\\)"
+                        + "\nif x = 4\n");
+                System.out.print("Enter your answer: ");
+                answer = input.nextInt();
+            }
+
+
+        } while (!isWinning);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
     }
@@ -308,59 +405,88 @@ public class Activity12_Manite {
         return (int) Math.floor(Math.random() * max) + min;
     }
 
-    // Quest 4
+    // Quest 4 - complete
     public static void guessingQuest() {
+        int guess;
+        int secretNumber = getRandomNumber(100, 1);
+        String clue = (secretNumber > 90) ? "The clue: Number is between 91 & 100"
+                : (secretNumber > 80) ? "The clue: Number is between 81 & 90"
+                : (secretNumber > 70) ? "The clue: Number is between 71 & 80"
+                : (secretNumber > 60) ? "The clue: Number is between 61 & 70"
+                : (secretNumber > 50) ? "The clue: Number is between 51 & 60"
+                : (secretNumber > 40) ? "The clue: Number is between 41 & 50"
+                : (secretNumber > 30) ? "The clue: Number is between 31 & 40"
+                : (secretNumber > 20) ? "The clue: Number is between 21 & 30"
+                : (secretNumber > 10) ? "The clue: Number is between 11 & 20"
+                : (secretNumber > 0) ? "The clue: Number is between 1 & 10" : "The clue: Number is a positive integer!";
 
-        String clue = (getRandomNumber(100,1) > 100) ? "Invalid input!"
-                    : (getRandomNumber(100,1) > 90) ? "The clue: Number is between 91 & 100"
-                    : (getRandomNumber(100,1) > 80) ? "The clue: Number is between 81 & 90"
-                    : (getRandomNumber(100,1) > 70) ? "The clue: Number is between 71 & 80"
-                    : (getRandomNumber(100,1) > 60) ? "The clue: Number is between 61 & 70"
-                    : (getRandomNumber(100,1) > 50) ? "The clue: Number is between 51 & 60"
-                    : (getRandomNumber(100,1) > 40) ? "The clue: Number is between 41 & 50"
-                    : (getRandomNumber(100,1) > 30) ? "The clue: Number is between 31 & 40"
-                    : (getRandomNumber(100,1) > 20) ? "The clue: Number is between 21 & 30"
-                    : (getRandomNumber(100,1) > 10) ? "The clue: Number is between 11 & 20"
-                    : (getRandomNumber(100,1) > 0) ? "The clue: Number is between 1 & 10" : "The clue: Number is a positive integer!";
+        do {
+            System.out.println(clue);
 
-        System.out.println(clue);
+            System.out.print("Enter your answer: ");
+            guess = input.nextInt();
 
-        System.out.print("Enter your answer: ");
-        int answer = input.nextInt();
+            if (guess < 1 || guess > 100) {
+                System.out.println("Invalid input!");
+                continue;
+            }
 
-        if ((answer != getRandomNumber(100, 1))) {
-            System.out.println("Wrong!");
-            takeDamage();
-        } else {
-            System.out.println("Correct!");
+            if (guess > secretNumber) {
+                System.out.println("Too high!");
+                takeDamage();
+                System.out.println(displayHealth());
+            } else if (guess < secretNumber) {
+                System.out.println("Too low!");
+                takeDamage();
+                System.out.println(displayHealth());
+            }
+
+        } while (guess != secretNumber);
+
+        System.out.println("Correct!");
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
+
     }
 
-    // Quest 5
+    // Quest 5 - complete
     private static double circleArea(double radius) {
         return Math.PI * radius * radius;
     }
 
-    public static void findTheArea() {
+    public static void findTheArea(double area) {
         double radius = 7;
         double correctAnswer = circleArea(radius);
 
-        System.out.print("Enter the area: ");
-        double answer = input.nextDouble();
-
-        if (Math.abs(answer - correctAnswer) < 0.01) {
-            System.out.println("Correct!");
-        } else {
-            System.out.println("Wrong");
-            takeDamage();
+        while (true) {
+            if (Math.abs(area - correctAnswer) < 0.01) {
+                System.out.println("Correct!");
+                break;
+            } else {
+                System.out.println("Wrong");
+                takeDamage();
+                System.out.println(displayHealth());
+                System.out.print("Enter the area: ");
+                area = input.nextDouble();
+            }
         }
 
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 
 
 
-    // Quest 6
+    // Quest 6 - complete
     public static void guessTheWord() {
         String secretWord = "Yeshua", secretHigher = secretWord.toLowerCase(), guess;
 
@@ -389,9 +515,16 @@ public class Activity12_Manite {
             } else {
                 System.out.println("Hint: " + hint);
                 takeDamage();
+                System.out.println(displayHealth());
             }
 
-        } while (!guess.equals(secretWord));
+        } while (!guess.equalsIgnoreCase(secretWord));
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private static int getWordLength(String word) {
@@ -401,12 +534,14 @@ public class Activity12_Manite {
     public static void takeDamage() {
         baseHealth--;
 
-        System.out.println("❤️ Health: " + baseHealth + "/" + maxHealth);
-
         if (baseHealth <= 0) {
             System.out.println("💀 Game Over!");
             System.exit(0);
         }
+    }
+
+    public static String displayHealth() {
+        return "❤️ Health: " + baseHealth + "/" + maxHealth;
     }
 
 
